@@ -7,6 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import AutoComplete from "../Components/Admin/AutoComplete";
+import axios from "axios";
 
 
 const organizationList = [
@@ -21,9 +22,12 @@ const [name, setName] = React.useState('');
 
 const onCreate = () => {
     let userData = {
-        org_id: org.org_id, email_id, name   
+        org_id: org.org_id, email_id, name , user_id: "TBC", status: "A" 
     }
-    console.log(userData)
+    
+    axios.post('http://localhost:8080/users/create', userData).then(res => {
+      if(res.data.code === 200) handleClose();
+    })
 }
   const handleClose = () => {
     setOpen(false);
