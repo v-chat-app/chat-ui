@@ -192,7 +192,7 @@ EnhancedTableHead.propTypes = {
 };
 
 function EnhancedTableToolbar(props) {
-  const { numSelected } = props;
+  const { numSelected, title } = props;
 
   return (
     <Toolbar
@@ -224,7 +224,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          ORGANIZATION NAME
+          {title}
         </Typography>
       )}
 
@@ -256,7 +256,7 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function UserDetails({ rows }) {
+export default function UserDetails({ rows, title }) {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
   const [selected, setSelected] = React.useState([]);
@@ -330,7 +330,7 @@ export default function UserDetails({ rows }) {
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length} title={title} />
         <TableContainer>
           <Table
             sx={{ minWidth: 700 }}
